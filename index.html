@@ -21,7 +21,34 @@
 
 <h1>📘 Booking API</h1>
 
-<h2>🔹 Общие правила</h2>
+<nav aria-label="Оглавление" class="toc">
+  <ul>
+    <li><a href="#section-rules">Общие правила</a></li>
+    <li><a href="#section-post">POST</a>
+      <ul>
+        <li><a href="#post-create-booking">Создание бронирования</a></li>
+      </ul>
+    </li>
+    <li><a href="#section-get">GET</a>
+      <ul>
+        <li><a href="#get-apartments">Квартиры</a></li>
+        <li><a href="#get-tariffs">Тарифы (с виртуальными тарифами)</a></li>
+        <li><a href="#get-prices">Цены по квартире и тарифам</a></li>
+        <li><a href="#get-availability">Доступность квартиры</a></li>
+      </ul>
+    </li>
+  </ul>
+  <hr>
+  <style>
+    .toc ul { list-style: none; padding-left: 0; }
+    .toc > ul > li { margin: 6px 0; }
+    .toc a { text-decoration: none; color: #0056b3; }
+    .toc a:hover { text-decoration: underline; }
+    .toc ul ul { margin-top: 4px; margin-bottom: 8px; padding-left: 16px; }
+  </style>
+</nav>
+
+<h2 id="section-rules">🔹 Общие правила</h2>
 <ul>
   <li>Все запросы работают в формате <b>JSON</b>.</li>
   <li>Даты: <code>YYYY-MM-DD</code>, время: <code>HH:mm</code>.</li>
@@ -30,9 +57,9 @@
 
 <hr>
 
-<h2>🔹 POST</h2>
+<h2 id="section-post">🔹 POST</h2>
 
-<h3>➤ Создание бронирования</h3>
+<h3 id="post-create-booking">➤ Создание бронирования</h3>
 <p><code>POST /booking/create</code></p>
 
 <h4>Описание полей</h4>
@@ -100,9 +127,9 @@
 
 <hr>
 
-<h2>🔹 GET</h2>
+<h2 id="section-get">🔹 GET</h2>
 
-<h3>➤ Квартиры</h3>
+<h3 id="get-apartments">➤ Квартиры</h3>
 <p><code>GET /apartments</code></p>
 
 <h4>Описание полей</h4>
@@ -141,7 +168,7 @@
 ]</code></pre>
 </details>
 
-<h3>➤ Тарифы (с виртуальными тарифами)</h3>
+<h3 id="get-tariffs">➤ Тарифы (с виртуальными тарифами)</h3>
 <p><code>GET /tariffs</code></p>
 
 <h4>Описание полей</h4>
@@ -171,7 +198,7 @@
 ]</code></pre>
 </details>
 
-<h3>➤ Цены по квартире и тарифам</h3>
+<h3 id="get-prices">➤ Цены по квартире и тарифам</h3>
 <p><code>GET /prices?apartment=APT001&tariff=STD&date_from=2025-01-01&date_to=2025-01-31</code></p>
 
 <h4>Описание полей</h4>
@@ -197,7 +224,7 @@
 ]</code></pre>
 </details>
 
-<h3>➤ Доступность квартиры</h3>
+<h3 id="get-availability">➤ Доступность квартиры</h3>
 <p><code>GET /availability?apartment=APT001&date_from=2025-01-01&date_to=2025-01-31</code></p>
 
 <h4>Описание полей</h4>
