@@ -50,8 +50,8 @@
 <h2 id="section-rules">Правила</h2>
 <ul>
   <li>Все запросы и ответы в формате <b>JSON</b>.</li>
-  <li>Ко всем запросам необходимо указывать JWT‑токен, который мы выдаём (заголовок <code>Authorization: Bearer &lt;jwt&gt;</code>).</li>
-  </ul>
+  <li>Ко всем запросам необходимо указывать JWT‑токен в заголовке <code>Authorization: Bearer &lt;jwt&gt;</code>.</li>
+</ul>
 
 <hr>
 
@@ -65,17 +65,24 @@
   <tr><th>Параметр</th><th>Тип</th><th>Описание</th></tr>
   <tr><td>apartment_id</td><td>string</td><td>ID квартиры для бронирования</td></tr>
   <tr><td>tariff_id</td><td>string</td><td>ID тарифного плана</td></tr>
-  <tr><td>promo_id</td><td>string</td><td>ID промо (если есть)</td></tr>
+  <tr><td>promo_id</td><td>string</td><td>ID промо (опционально)</td></tr>
   <tr><td>currency</td><td>string</td><td>Валюта расчёта (например, RUB)</td></tr>
   <tr><td>checkin_time</td><td>string</td><td>Время заезда (HH:mm)</td></tr>
   <tr><td>checkout_time</td><td>string</td><td>Время выезда (HH:mm)</td></tr>
-  <tr><td>guest</td><td>object</td><td>Основные данные гостя и контакты</td></tr>
+  <tr><td>guest</td><td>object</td><td>Главный гость (см. таблицу guest)</td></tr>
+  <tr><td>guests</td><td>array</td><td>Массив всех гостей (главный и дополнительные, см. таблицу guest)</td></tr>
   <tr><td>people_count</td><td>int</td><td>Количество гостей (1..максимум для квартиры)</td></tr>
-  <tr><td>dates</td><td>array</td><td>Массив дат проживания</td></tr>
+  <tr><td>dates</td><td>array</td><td>Массив объектов { date, price } — даты проживания с ценой за каждую дату</td></tr>
   <tr><td>comment</td><td>string</td><td>Комментарий к бронированию</td></tr>
-  <tr><td>payment_method</td><td>string</td><td>Способ оплаты</td></tr>
-  <tr><td>meta</td><td>object</td><td>Произвольные дополнительные данные</td></tr>
-  </table>
+</table>
+
+<h4>Объект guest</h4>
+<table>
+  <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
+  <tr><td>first_name</td><td>string</td><td>Имя</td></tr>
+  <tr><td>last_name</td><td>string</td><td>Фамилия</td></tr>
+  <tr><td>phone</td><td>string</td><td>Телефон</td></tr>
+</table>
 
 <details>
   <summary>Пример запроса</summary>
@@ -88,11 +95,16 @@
   "checkin_time": "14:00",
   "checkout_time": "12:00",
   "guest": { "first_name": "Иван", "last_name": "Иванов", "phone": "+7..." },
+  "guests": [
+    { "first_name": "Иван", "last_name": "Иванов", "phone": "+7..." },
+    { "first_name": "Пётр", "last_name": "Петров", "phone": "+7..." }
+  ],
   "people_count": 2,
-  "dates": ["2025-01-01", "2025-01-02"],
-  "comment": "Поздний заезд",
-  "payment_method": "card",
-  "meta": { "source": "site" }
+  "dates": [
+    { "date": "2025-01-01", "price": 250 },
+    { "date": "2025-01-02", "price": 200 }
+  ],
+  "comment": "Поздний заезд"
 }</code></pre>
 </details>
 
@@ -118,7 +130,7 @@
   <tr><td>name</td><td>string</td><td>Название</td></tr>
   <tr><td>base_beds</td><td>int</td><td>Количество основных мест</td></tr>
   <tr><td>extra_beds</td><td>int</td><td>Количество дополнительных мест</td></tr>
-  <tr><td>max_people</td><td>int</td><td>Расчётное максимум гостей (base_beds + extra_beds)</td></tr>
+  <tr><td>max_people</td><td>int</td><td>Расчётный максимум гостей (base_beds + extra_beds)</td></tr>
 </table>
 
 <details>
@@ -259,3 +271,4 @@
 
 </body>
 </html>
+
