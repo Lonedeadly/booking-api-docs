@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -26,20 +26,20 @@
 
 <h1>Booking API</h1>
 
-<nav aria-label="Содержание" class="toc">
+<nav aria-label="РЎРѕРґРµСЂР¶Р°РЅРёРµ" class="toc">
   <ul>
-    <li><a href="#section-rules">Правила</a></li>
+    <li><a href="#section-rules">РџСЂР°РІРёР»Р°</a></li>
     <li><a href="#section-post">POST</a>
       <ul>
-        <li><a href="#post-create-booking">Создание бронирования</a></li>
+        <li><a href="#post-create-booking">РЎРѕР·РґР°РЅРёРµ Р±СЂРѕРЅРёСЂРѕРІР°РЅРёСЏ</a></li>
       </ul>
     </li>
     <li><a href="#section-get">GET</a>
       <ul>
-        <li><a href="#get-apartments">Квартиры</a></li>
-        <li><a href="#get-tariffs">Тарифы (с виртуальными тарифами)</a></li>
-        <li><a href="#get-prices">Цены по датам и тарифам</a></li>
-        <li><a href="#get-availability">Доступность</a></li>
+        <li><a href="#get-apartments">РљРІР°СЂС‚РёСЂС‹</a></li>
+        <li><a href="#get-tariffs">РўР°СЂРёС„С‹ (СЃ РІРёСЂС‚СѓР°Р»СЊРЅС‹РјРё С‚Р°СЂРёС„Р°РјРё)</a></li>
+        <li><a href="#get-prices">Р¦РµРЅС‹ РїРѕ РґР°С‚Р°Рј Рё С‚Р°СЂРёС„Р°Рј</a></li>
+        <li><a href="#get-availability">Р”РѕСЃС‚СѓРїРЅРѕСЃС‚СЊ</a></li>
       </ul>
     </li>
   </ul>
@@ -47,69 +47,69 @@
 
 <hr>
 
-<h2 id="section-rules">Правила</h2>
+<h2 id="section-rules">РџСЂР°РІРёР»Р°</h2>
 <ul>
-  <li>Все запросы и ответы в формате <b>JSON</b>.</li>
-  <li>Ко всем запросам необходимо указывать JWT‑токен в заголовке <code>Authorization: Bearer &lt;jwt&gt;</code>.</li>
+  <li>Р’СЃРµ Р·Р°РїСЂРѕСЃС‹ Рё РѕС‚РІРµС‚С‹ РІ С„РѕСЂРјР°С‚Рµ <b>JSON</b>.</li>
+  <li>РљРѕ РІСЃРµРј Р·Р°РїСЂРѕСЃР°Рј РЅРµРѕР±С…РѕРґРёРјРѕ СѓРєР°Р·С‹РІР°С‚СЊ JWTвЂ‘С‚РѕРєРµРЅ РІ Р·Р°РіРѕР»РѕРІРєРµ <code>Authorization: Bearer &lt;jwt&gt;</code>.</li>
 </ul>
 
 <hr>
 
 <h2 id="section-post">POST</h2>
 
-<h3 id="post-create-booking">Создание бронирования</h3>
+<h3 id="post-create-booking">РЎРѕР·РґР°РЅРёРµ Р±СЂРѕРЅРёСЂРѕРІР°РЅРёСЏ</h3>
 <p><code>POST /booking/create</code></p>
 
-<h4>Параметры запроса</h4>
+<h4>РџР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°</h4>
 <table>
-  <tr><th>Параметр</th><th>Тип</th><th>Описание</th></tr>
-  <tr><td>apartment_id</td><td>string</td><td>ID квартиры для бронирования</td></tr>
-  <tr><td>tariff_id</td><td>string</td><td>ID тарифного плана</td></tr>
-  <tr><td>promo_id</td><td>string</td><td>ID промо (опционально)</td></tr>
-  <tr><td>currency</td><td>string</td><td>Валюта расчёта (например, RUB)</td></tr>
-  <tr><td>checkin_time</td><td>string</td><td>Время заезда (HH:mm)</td></tr>
-  <tr><td>checkout_time</td><td>string</td><td>Время выезда (HH:mm)</td></tr>
-  <tr><td>guest</td><td>object</td><td>Главный гость (см. таблицу guest)</td></tr>
-  <tr><td>guests</td><td>array</td><td>Массив всех гостей (главный и дополнительные, см. таблицу guest)</td></tr>
-  <tr><td>people_count</td><td>int</td><td>Количество гостей (1..максимум для квартиры)</td></tr>
-  <tr><td>dates</td><td>array</td><td>Массив объектов { date, price } — даты проживания с ценой за каждую дату</td></tr>
-  <tr><td>comment</td><td>string</td><td>Комментарий к бронированию</td></tr>
+  <tr><th>РџР°СЂР°РјРµС‚СЂ</th><th>РўРёРї</th><th>РћРїРёСЃР°РЅРёРµ</th></tr>
+  <tr><td>apartment_id</td><td>string</td><td>ID РєРІР°СЂС‚РёСЂС‹ РґР»СЏ Р±СЂРѕРЅРёСЂРѕРІР°РЅРёСЏ</td></tr>
+  <tr><td>tariff_id</td><td>string</td><td>ID С‚Р°СЂРёС„РЅРѕРіРѕ РїР»Р°РЅР°</td></tr>
+  <tr><td>virtual_tariff_id</td><td>string</td><td>ID РїСЂРѕРјРѕ (РѕРїС†РёРѕРЅР°Р»СЊРЅРѕ)</td></tr>
+  <tr><td>currency</td><td>string</td><td>Р’Р°Р»СЋС‚Р° СЂР°СЃС‡С‘С‚Р° (РЅР°РїСЂРёРјРµСЂ, RUB)</td></tr>
+  <tr><td>checkin_time</td><td>string</td><td>Р’СЂРµРјСЏ Р·Р°РµР·РґР° (HH:mm)</td></tr>
+  <tr><td>checkout_time</td><td>string</td><td>Р’СЂРµРјСЏ РІС‹РµР·РґР° (HH:mm)</td></tr>
+  <tr><td>guest</td><td>object</td><td>Р“Р»Р°РІРЅС‹Р№ РіРѕСЃС‚СЊ (СЃРј. С‚Р°Р±Р»РёС†Сѓ guest)</td></tr>
+  <tr><td>guests</td><td>array</td><td>РњР°СЃСЃРёРІ РІСЃРµС… РіРѕСЃС‚РµР№ (РіР»Р°РІРЅС‹Р№ Рё РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ, СЃРј. С‚Р°Р±Р»РёС†Сѓ guest)</td></tr>
+  <tr><td>people_count</td><td>int</td><td>РљРѕР»РёС‡РµСЃС‚РІРѕ РіРѕСЃС‚РµР№ (1..РјР°РєСЃРёРјСѓРј РґР»СЏ РєРІР°СЂС‚РёСЂС‹)</td></tr>
+  <tr><td>dates</td><td>array</td><td>РњР°СЃСЃРёРІ РѕР±СЉРµРєС‚РѕРІ { date, price } вЂ” РґР°С‚С‹ РїСЂРѕР¶РёРІР°РЅРёСЏ СЃ С†РµРЅРѕР№ Р·Р° РєР°Р¶РґСѓСЋ РґР°С‚Сѓ</td></tr>
+  <tr><td>comment</td><td>string</td><td>РљРѕРјРјРµРЅС‚Р°СЂРёР№ Рє Р±СЂРѕРЅРёСЂРѕРІР°РЅРёСЋ</td></tr>
 </table>
 
-<h4>Объект guest</h4>
+<h4>РћР±СЉРµРєС‚ guest</h4>
 <table>
-  <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
-  <tr><td>first_name</td><td>string</td><td>Имя</td></tr>
-  <tr><td>last_name</td><td>string</td><td>Фамилия</td></tr>
-  <tr><td>phone</td><td>string</td><td>Телефон</td></tr>
+  <tr><th>РџРѕР»Рµ</th><th>РўРёРї</th><th>РћРїРёСЃР°РЅРёРµ</th></tr>
+  <tr><td>first_name</td><td>string</td><td>РРјСЏ</td></tr>
+  <tr><td>last_name</td><td>string</td><td>Р¤Р°РјРёР»РёСЏ</td></tr>
+  <tr><td>phone</td><td>string</td><td>РўРµР»РµС„РѕРЅ</td></tr>
 </table>
 
 <details>
-  <summary>Пример запроса</summary>
+  <summary>РџСЂРёРјРµСЂ Р·Р°РїСЂРѕСЃР°</summary>
   <pre><code>POST /booking/create
 {
   "apartment_id": "APT001",
   "tariff_id": "STD",
-  "promo_id": "DISC15",
+  "virtual_tariff_id": "DISC15",
   "currency": "RUB",
   "checkin_time": "14:00",
   "checkout_time": "12:00",
-  "guest": { "first_name": "Иван", "last_name": "Иванов", "phone": "+7..." },
+  "guest": { "first_name": "РРІР°РЅ", "last_name": "РРІР°РЅРѕРІ", "phone": "+7..." },
   "guests": [
-    { "first_name": "Иван", "last_name": "Иванов", "phone": "+7..." },
-    { "first_name": "Пётр", "last_name": "Петров", "phone": "+7..." }
+    { "first_name": "РРІР°РЅ", "last_name": "РРІР°РЅРѕРІ", "phone": "+7..." },
+    { "first_name": "РџС‘С‚СЂ", "last_name": "РџРµС‚СЂРѕРІ", "phone": "+7..." }
   ],
   "people_count": 2,
   "dates": [
     { "date": "2025-01-01", "price": 250 },
     { "date": "2025-01-02", "price": 200 }
   ],
-  "comment": "Поздний заезд"
+  "comment": "РџРѕР·РґРЅРёР№ Р·Р°РµР·Рґ"
 }</code></pre>
 </details>
 
 <details>
-  <summary>Пример ответа</summary>
+  <summary>РџСЂРёРјРµСЂ РѕС‚РІРµС‚Р°</summary>
   <pre><code>{
   "booking_id": "BKG-12345",
   "status": "created"
@@ -120,84 +120,84 @@
 
 <h2 id="section-get">GET</h2>
 
-<h3 id="get-apartments">Квартиры</h3>
+<h3 id="get-apartments">РљРІР°СЂС‚РёСЂС‹</h3>
 <p><code>GET /apartments</code></p>
 
-<h4>Поля ответа</h4>
+<h4>РџРѕР»СЏ РѕС‚РІРµС‚Р°</h4>
 <table>
-  <tr><th>Параметр</th><th>Тип</th><th>Описание</th></tr>
-  <tr><td>id</td><td>string</td><td>ID квартиры</td></tr>
-  <tr><td>name</td><td>string</td><td>Название</td></tr>
-  <tr><td>base_beds</td><td>int</td><td>Количество основных мест</td></tr>
-  <tr><td>extra_beds</td><td>int</td><td>Количество дополнительных мест</td></tr>
-  <tr><td>max_people</td><td>int</td><td>Расчётный максимум гостей (base_beds + extra_beds)</td></tr>
+  <tr><th>РџР°СЂР°РјРµС‚СЂ</th><th>РўРёРї</th><th>РћРїРёСЃР°РЅРёРµ</th></tr>
+  <tr><td>id</td><td>string</td><td>ID РєРІР°СЂС‚РёСЂС‹</td></tr>
+  <tr><td>name</td><td>string</td><td>РќР°Р·РІР°РЅРёРµ</td></tr>
+  <tr><td>base_beds</td><td>int</td><td>РљРѕР»РёС‡РµСЃС‚РІРѕ РѕСЃРЅРѕРІРЅС‹С… РјРµСЃС‚</td></tr>
+  <tr><td>extra_beds</td><td>int</td><td>РљРѕР»РёС‡РµСЃС‚РІРѕ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹С… РјРµСЃС‚</td></tr>
+  <tr><td>max_people</td><td>int</td><td>Р Р°СЃС‡С‘С‚РЅС‹Р№ РјР°РєСЃРёРјСѓРј РіРѕСЃС‚РµР№ (base_beds + extra_beds)</td></tr>
 </table>
 
 <details>
-  <summary>Пример запроса</summary>
+  <summary>РџСЂРёРјРµСЂ Р·Р°РїСЂРѕСЃР°</summary>
   <pre><code>GET /apartments</code></pre>
 </details>
 
 <details>
-  <summary>Пример ответа</summary>
+  <summary>РџСЂРёРјРµСЂ РѕС‚РІРµС‚Р°</summary>
   <pre><code>[
-  { "id": "APT001", "name": "Студия у парка", "base_beds": 2, "extra_beds": 1, "max_people": 3 }
+  { "id": "APT001", "name": "РЎС‚СѓРґРёСЏ Сѓ РїР°СЂРєР°", "base_beds": 2, "extra_beds": 1, "max_people": 3 }
 ]</code></pre>
 </details>
 
-<h3 id="get-tariffs">Тарифы (с виртуальными тарифами)</h3>
+<h3 id="get-tariffs">РўР°СЂРёС„С‹ (СЃ РІРёСЂС‚СѓР°Р»СЊРЅС‹РјРё С‚Р°СЂРёС„Р°РјРё)</h3>
 <p><code>GET /tariffs</code></p>
 
-<h4>Поля ответа</h4>
+<h4>РџРѕР»СЏ РѕС‚РІРµС‚Р°</h4>
 <table>
-  <tr><th>Параметр</th><th>Тип</th><th>Описание</th></tr>
-  <tr><td>id</td><td>string</td><td>ID тарифа</td></tr>
-  <tr><td>title</td><td>string</td><td>Название тарифа</td></tr>
-  <tr><td>virtual_tariffs</td><td>array</td><td>Виртуальные тарифы: { <b>virtual_tariff_id</b>, title }</td></tr>
+  <tr><th>РџР°СЂР°РјРµС‚СЂ</th><th>РўРёРї</th><th>РћРїРёСЃР°РЅРёРµ</th></tr>
+  <tr><td>id</td><td>string</td><td>ID С‚Р°СЂРёС„Р°</td></tr>
+  <tr><td>title</td><td>string</td><td>РќР°Р·РІР°РЅРёРµ С‚Р°СЂРёС„Р°</td></tr>
+  <tr><td>virtual_tariffs</td><td>array</td><td>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Рµ С‚Р°СЂРёС„С‹: { <b>virtual_tariff_id</b>, title }</td></tr>
 </table>
 
-<p><b>Кратко о виртуальных тарифах:</b> виртуальный тариф исходит из обычного тарифа и применяет к нему процентную скидку. Он не меняет правила базового тарифа, а только снижает цену по заданному проценту.</p>
+<p><b>РљСЂР°С‚РєРѕ Рѕ РІРёСЂС‚СѓР°Р»СЊРЅС‹С… С‚Р°СЂРёС„Р°С…:</b> РІРёСЂС‚СѓР°Р»СЊРЅС‹Р№ С‚Р°СЂРёС„ РёСЃС…РѕРґРёС‚ РёР· РѕР±С‹С‡РЅРѕРіРѕ С‚Р°СЂРёС„Р° Рё РїСЂРёРјРµРЅСЏРµС‚ Рє РЅРµРјСѓ РїСЂРѕС†РµРЅС‚РЅСѓСЋ СЃРєРёРґРєСѓ. РћРЅ РЅРµ РјРµРЅСЏРµС‚ РїСЂР°РІРёР»Р° Р±Р°Р·РѕРІРѕРіРѕ С‚Р°СЂРёС„Р°, Р° С‚РѕР»СЊРєРѕ СЃРЅРёР¶Р°РµС‚ С†РµРЅСѓ РїРѕ Р·Р°РґР°РЅРЅРѕРјСѓ РїСЂРѕС†РµРЅС‚Сѓ.</p>
 
 <details>
-  <summary>Пример запроса</summary>
+  <summary>РџСЂРёРјРµСЂ Р·Р°РїСЂРѕСЃР°</summary>
   <pre><code>GET /tariffs</code></pre>
 </details>
 
 <details>
-  <summary>Пример ответа</summary>
+  <summary>РџСЂРёРјРµСЂ РѕС‚РІРµС‚Р°</summary>
   <pre><code>[
   {
     "id": "STD",
-    "title": "Стандартный тариф",
+    "title": "РЎС‚Р°РЅРґР°СЂС‚РЅС‹Р№ С‚Р°СЂРёС„",
     "virtual_tariffs": [
-      { "virtual_tariff_id": "DISC15", "title": "Скидка 15%" },
-      { "virtual_tariff_id": "DISC20", "title": "Скидка 20%" }
+      { "virtual_tariff_id": "DISC15", "title": "РЎРєРёРґРєР° 15%" },
+      { "virtual_tariff_id": "DISC20", "title": "РЎРєРёРґРєР° 20%" }
     ]
   }
 ]</code></pre>
 </details>
 
-<h3 id="get-prices">Цены по датам и тарифам</h3>
+<h3 id="get-prices">Р¦РµРЅС‹ РїРѕ РґР°С‚Р°Рј Рё С‚Р°СЂРёС„Р°Рј</h3>
 <p><code>GET /prices?apartment_id=APT001&tariff_id=STD&date_from=2025-01-01&date_to=2025-01-31</code></p>
 
-<h4>Параметры запроса</h4>
+<h4>РџР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°</h4>
 <table>
-  <tr><th>Параметр</th><th>Тип</th><th>Описание</th></tr>
-  <tr><td>apartment_id</td><td>string</td><td>ID квартиры</td></tr>
-  <tr><td>tariff_id</td><td>string</td><td>ID тарифного плана</td></tr>
-  <tr><td>promo_id</td><td>string</td><td>ID промо (опционально)</td></tr>
-  <tr><td>date_from</td><td>string</td><td>Начало периода (YYYY-MM-DD)</td></tr>
-  <tr><td>date_to</td><td>string</td><td>Конец периода (YYYY-MM-DD)</td></tr>
-  <tr><td>people_count</td><td>int</td><td>Количество гостей. Если указан — вернётся цена именно для этого количества. Если не указан — вернутся цены по всем допустимым количествам гостей.</td></tr>
+  <tr><th>РџР°СЂР°РјРµС‚СЂ</th><th>РўРёРї</th><th>РћРїРёСЃР°РЅРёРµ</th></tr>
+  <tr><td>apartment_id</td><td>string</td><td>ID РєРІР°СЂС‚РёСЂС‹</td></tr>
+  <tr><td>tariff_id</td><td>string</td><td>ID С‚Р°СЂРёС„РЅРѕРіРѕ РїР»Р°РЅР°</td></tr>
+  <tr><td>virtual_tariff_id</td><td>string</td><td>ID РїСЂРѕРјРѕ (РѕРїС†РёРѕРЅР°Р»СЊРЅРѕ)</td></tr>
+  <tr><td>date_from</td><td>string</td><td>РќР°С‡Р°Р»Рѕ РїРµСЂРёРѕРґР° (YYYY-MM-DD)</td></tr>
+  <tr><td>date_to</td><td>string</td><td>РљРѕРЅРµС† РїРµСЂРёРѕРґР° (YYYY-MM-DD)</td></tr>
+  <tr><td>people_count</td><td>int</td><td>РљРѕР»РёС‡РµСЃС‚РІРѕ РіРѕСЃС‚РµР№. Р•СЃР»Рё СѓРєР°Р·Р°РЅ вЂ” РІРµСЂРЅС‘С‚СЃСЏ С†РµРЅР° РёРјРµРЅРЅРѕ РґР»СЏ СЌС‚РѕРіРѕ РєРѕР»РёС‡РµСЃС‚РІР°. Р•СЃР»Рё РЅРµ СѓРєР°Р·Р°РЅ вЂ” РІРµСЂРЅСѓС‚СЃСЏ С†РµРЅС‹ РїРѕ РІСЃРµРј РґРѕРїСѓСЃС‚РёРјС‹Рј РєРѕР»РёС‡РµСЃС‚РІР°Рј РіРѕСЃС‚РµР№.</td></tr>
 </table>
 
 <details>
-  <summary>Пример запроса</summary>
+  <summary>РџСЂРёРјРµСЂ Р·Р°РїСЂРѕСЃР°</summary>
   <pre><code>GET /prices?apartment_id=APT001&tariff_id=STD&date_from=2025-01-01&date_to=2025-01-31</code></pre>
 </details>
 
 <details>
-  <summary>Пример ответа (единый формат, people_count=2)</summary>
+  <summary>РџСЂРёРјРµСЂ РѕС‚РІРµС‚Р° (РµРґРёРЅС‹Р№ С„РѕСЂРјР°С‚, people_count=2)</summary>
   <pre><code>GET /prices?apartment_id=APT001&tariff_id=STD&date_from=2025-01-01&date_to=2025-01-31&people_count=2</code></pre>
   <pre><code>[
   {
@@ -218,7 +218,7 @@
 </details>
 
 <details>
-  <summary>Пример ответа (все варианты по вместимости)</summary>
+  <summary>РџСЂРёРјРµСЂ РѕС‚РІРµС‚Р° (РІСЃРµ РІР°СЂРёР°РЅС‚С‹ РїРѕ РІРјРµСЃС‚РёРјРѕСЃС‚Рё)</summary>
   <pre><code>[
   {
     "apartment_id": "APT001",
@@ -245,26 +245,26 @@
 ]</code></pre>
 </details>
 
-<p><b>Максимум гостей</b> рассчитывается как <code>base_beds + extra_beds</code> для выбранной квартиры.</p>
+<p><b>РњР°РєСЃРёРјСѓРј РіРѕСЃС‚РµР№</b> СЂР°СЃСЃС‡РёС‚С‹РІР°РµС‚СЃСЏ РєР°Рє <code>base_beds + extra_beds</code> РґР»СЏ РІС‹Р±СЂР°РЅРЅРѕР№ РєРІР°СЂС‚РёСЂС‹.</p>
 
-<h3 id="get-availability">Доступность</h3>
+<h3 id="get-availability">Р”РѕСЃС‚СѓРїРЅРѕСЃС‚СЊ</h3>
 <p><code>GET /availability?apartment_id=APT001&date_from=2025-01-01&date_to=2025-01-31</code></p>
 
-<h4>Параметры запроса</h4>
+<h4>РџР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°</h4>
 <table>
-  <tr><th>Параметр</th><th>Тип</th><th>Описание</th></tr>
-  <tr><td>apartment_id</td><td>string</td><td>ID квартиры</td></tr>
-  <tr><td>date_from</td><td>string</td><td>Дата начала (YYYY-MM-DD)</td></tr>
-  <tr><td>date_to</td><td>string</td><td>Дата окончания (YYYY-MM-DD)</td></tr>
+  <tr><th>РџР°СЂР°РјРµС‚СЂ</th><th>РўРёРї</th><th>РћРїРёСЃР°РЅРёРµ</th></tr>
+  <tr><td>apartment_id</td><td>string</td><td>ID РєРІР°СЂС‚РёСЂС‹</td></tr>
+  <tr><td>date_from</td><td>string</td><td>Р”Р°С‚Р° РЅР°С‡Р°Р»Р° (YYYY-MM-DD)</td></tr>
+  <tr><td>date_to</td><td>string</td><td>Р”Р°С‚Р° РѕРєРѕРЅС‡Р°РЅРёСЏ (YYYY-MM-DD)</td></tr>
 </table>
 
 <details>
-  <summary>Пример запроса</summary>
+  <summary>РџСЂРёРјРµСЂ Р·Р°РїСЂРѕСЃР°</summary>
   <pre><code>GET /availability?apartment_id=APT001&date_from=2025-01-01&date_to=2025-01-31</code></pre>
 </details>
 
 <details>
-  <summary>Пример ответа</summary>
+  <summary>РџСЂРёРјРµСЂ РѕС‚РІРµС‚Р°</summary>
   <pre><code>[
   { "apartment_id": "APT001", "date": "2025-01-01", "available": true },
   { "apartment_id": "APT001", "date": "2025-01-02", "available": false }
@@ -273,3 +273,4 @@
 
 </body>
 </html>
+
