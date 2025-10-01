@@ -37,7 +37,7 @@
     <li><a href="#section-get">GET</a>
       <ul>
         <li><a href="#get-apartments">Квартиры</a></li>
-        <li><a href="#get-tariffs">Тарифы (с промокодами)</a></li>
+        <li><a href="#get-tariffs">Тарифы (с виртуальными тарифами)</a></li>
         <li><a href="#get-prices">Цены по датам и тарифам</a></li>
         <li><a href="#get-availability">Доступность</a></li>
       </ul>
@@ -145,7 +145,7 @@
 ]</code></pre>
 </details>
 
-<h3 id="get-tariffs">Тарифы (с промокодами)</h3>
+<h3 id="get-tariffs">Тарифы (с виртуальными тарифами)</h3>
 <p><code>GET /tariffs</code></p>
 
 <h4>Поля ответа</h4>
@@ -153,8 +153,10 @@
   <tr><th>Параметр</th><th>Тип</th><th>Описание</th></tr>
   <tr><td>id</td><td>string</td><td>ID тарифа</td></tr>
   <tr><td>title</td><td>string</td><td>Название тарифа</td></tr>
-  <tr><td>promos</td><td>array</td><td>Массив промо: { <b>promo_id</b>, title }</td></tr>
+  <tr><td>virtual_tariffs</td><td>array</td><td>Виртуальные тарифы: { <b>virtual_tariff_id</b>, title }</td></tr>
 </table>
+
+<p><b>Кратко о виртуальных тарифах:</b> виртуальный тариф исходит из обычного тарифа и применяет к нему процентную скидку. Он не меняет правила базового тарифа, а только снижает цену по заданному проценту.</p>
 
 <details>
   <summary>Пример запроса</summary>
@@ -167,9 +169,9 @@
   {
     "id": "STD",
     "title": "Стандартный тариф",
-    "promos": [
-      { "promo_id": "DISC15", "title": "Скидка 15%" },
-      { "promo_id": "DISC20", "title": "Скидка 20%" }
+    "virtual_tariffs": [
+      { "virtual_tariff_id": "DISC15", "title": "Скидка 15%" },
+      { "virtual_tariff_id": "DISC20", "title": "Скидка 20%" }
     ]
   }
 ]</code></pre>
@@ -271,4 +273,3 @@
 
 </body>
 </html>
-
