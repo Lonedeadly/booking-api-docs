@@ -1,0 +1,1 @@
+  <tr><td>promo_id</td><td>string</td><td>ID промо (опционально)</td></tr>
